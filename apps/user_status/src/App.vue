@@ -201,6 +201,12 @@ export default {
 			&:focus {
 				box-shadow: inset 4px 0 var(--color-primary-element);
 			}
+
+			&.icon-loading-small {
+				&::after {
+					left: 21px;
+				}
+			}
 		}
 	}
 }
