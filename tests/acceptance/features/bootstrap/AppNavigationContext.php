@@ -31,7 +31,7 @@ class AppNavigationContext implements Context, ActorAwareInterface {
 	 * @return Locator
 	 */
 	public static function appNavigation() {
-		return Locator::forThe()->id("app-navigation")->
+		return Locator::forThe()->xpath("//div[@id=\"app-navigation\" or contains(@class, 'app-navigation')]")->
 			describedAs("App navigation");
 	}
 
