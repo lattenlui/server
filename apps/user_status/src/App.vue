@@ -23,10 +23,6 @@
 	<li>
 		<div id="user-status-menu-item">
 			<span id="user-status-menu-item__header">{{ displayName }}</span>
-			<!--<button-->
-			<!--class="user-status-menu-item__subheader icon"-->
-			<!--:class="[statusIcon]">-->
-			<!--{{ visibleMessage }}-->
 			<Actions
 				id="user-status-menu-item__subheader"
 				:default-icon="statusIcon"
@@ -46,7 +42,6 @@
 					{{ $t('user_status', 'Set custom status') }}
 				</ActionButton>
 			</Actions>
-			<!--</button>-->
 			<SetStatusModal
 				v-if="isModalOpen"
 				@close="closeModal" />
@@ -75,6 +70,8 @@ export default {
 			isModalOpen: false,
 			isSavingStatus: false,
 			statuses: getAllStatusOptions(),
+			interval: null,
+			did
 		}
 	},
 	computed: {
@@ -133,6 +130,10 @@ export default {
 	 */
 	mounted() {
 		this.$store.dispatch('loadStatusFromInitialState')
+
+		if (OC.config.session_keepalive) {
+			this.interval = setInterval(this._backgroundFetch.bind(this), this.pollInterval)
+		}),
 	},
 	methods: {
 		/**
