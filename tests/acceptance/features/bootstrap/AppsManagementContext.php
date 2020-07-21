@@ -109,7 +109,7 @@ class AppsManagementContext implements Context, ActorAwareInterface {
 	 * @return Locator
 	 */
 	public static function sidebar() {
-		return Locator::forThe()->xpath("//div[@id=\"app-sidebar\" or contains(@class, 'app-sidebar')]")->
+		return Locator::forThe()->xpath("//*[@id=\"app-sidebar\" or contains(@class, 'app-sidebar')]")->
 		describedAs("Sidebar in apps management");
 	}
 
